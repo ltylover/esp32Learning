@@ -1,0 +1,20 @@
+{
+    "project_name":       "bootloader",
+    "project_path":       "C:/Users/lty/Desktop/esp-idf-3/components/bootloader/subproject",
+    "build_dir":          "C:/Users/lty/Desktop/esp32Learning/blinkTry/blink/build/bootloader",
+    "config_file":        "C:/Users/lty/Desktop/esp32Learning/blinkTry/blink/sdkconfig",
+    "config_defaults":    "",
+    "app_elf":            "bootloader.elf",
+    "app_bin":            "bootloader.bin",
+    "git_revision":       "v4.3",
+    "target":             "esp32",
+    "phy_data_partition": "",
+    "monitor_baud" :      "115200",
+    "monitor_toolprefix": "xtensa-esp32-elf-",
+    "config_environment" : {
+        "COMPONENT_KCONFIGS" : "C:/Users/lty/Desktop/esp-idf-3/components/efuse/Kconfig;C:/Users/lty/Desktop/esp-idf-3/components/esp32/Kconfig;C:/Users/lty/Desktop/esp-idf-3/components/esp_common/Kconfig;C:/Users/lty/Desktop/esp-idf-3/components/esp_system/Kconfig;C:/Users/lty/Desktop/esp-idf-3/components/log/Kconfig;C:/Users/lty/Desktop/esp-idf-3/components/newlib/Kconfig;C:/Users/lty/Desktop/esp-idf-3/components/spi_flash/Kconfig",
+        "COMPONENT_KCONFIGS_PROJBUILD" : "C:/Users/lty/Desktop/esp-idf-3/components/bootloader/Kconfig.projbuild;C:/Users/lty/Desktop/esp-idf-3/components/esptool_py/Kconfig.projbuild;C:/Users/lty/Desktop/esp-idf-3/components/partition_table/Kconfig.projbuild"
+    },
+    "build_components" : [ "bootloader", "bootloader_support", "efuse", "esp32", "esp_common", "esp_hw_support", "esp_rom", "esp_system", "esptool_py", "hal", "log", "main", "micro-ecc", "newlib", "partition_table", "soc", "spi_flash", "xtensa", "" ],
+    "build_component_paths" : [ "C:/Users/lty/Desktop/esp-idf-3/components/bootloader", "C:/Users/lty/Desktop/esp-idf-3/components/bootloader_support", "C:/Users/lty/Desktop/esp-idf-3/components/efuse", "C:/Users/lty/Desktop/esp-idf-3/components/esp32", "C:/Users/lty/Desktop/esp-idf-3/components/esp_common", "C:/Users/lty/Desktop/esp-idf-3/components/esp_hw_support", "C:/Users/lty/Desktop/esp-idf-3/components/esp_rom", "C:/Users/lty/Desktop/esp-idf-3/components/esp_system", "C:/Users/lty/Desktop/esp-idf-3/components/esptool_py", "C:/Users/lty/Desktop/esp-idf-3/components/hal", "C:/Users/lty/Desktop/esp-idf-3/components/log", "C:/Users/lty/Desktop/esp-idf-3/components/bootloader/subproject/main", "C:/Users/lty/Desktop/esp-idf-3/components/bootloader/subproject/components/micro-ecc", "C:/Users/lty/Desktop/esp-idf-3/components/newlib", "C:/Users/lty/Desktop/esp-idf-3/components/partition_table", "C:/Users/lty/Desktop/esp-idf-3/components/soc", "C:/Users/lty/Desktop/esp-idf-3/components/spi_flash", "C:/Users/lty/Desktop/esp-idf-3/components/xtensa", "" ]
+}
