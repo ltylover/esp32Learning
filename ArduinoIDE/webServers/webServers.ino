@@ -3,8 +3,11 @@
 #include <WiFiServer.h>
 #include <WebServer.h>
 
+boolean led1Flag = false;
+
 String led1State = "OFF";
 String receline = "";
+String receAll = "";
 
 const char* ssid = "ESP32";
 const char* password = "12345678";
@@ -18,6 +21,7 @@ String HTML = "<!DOCTYPE html>\
 <html>\
 <body>\
 <meta charset = \"utf-8\">\
+<style> html{text-align:center;}</style>\
 <h1>ESP32 Web Server </h1>\
 <p>GPIO 4 - " + led1State + "</p>\
 <p><a href =\"/led1_on\"><button>打开</button></a></p>\
@@ -55,6 +59,8 @@ void setup() {
   Serial.println(myIP);
   Serial.println();
 
+  pinMode(2,OUTPUT);
+
   server.on("/", handle_root);
   
   server.begin();
@@ -89,7 +95,7 @@ void loop() {
 //    newClient.stop();
 //    Serial.println("Client disconnected.");
 //  }
-   /********/ 
+
    server.handleClient();
 
 }
