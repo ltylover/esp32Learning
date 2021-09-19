@@ -14,8 +14,9 @@ const char* password = "12345678";
 
 //WiFiServer server(80);
 //WiFiClient newClient;
+ 
+WebServer server(80); 
 
-WebServer server(80);  
 
 String HTML = "<!DOCTYPE html>\
 <html>\
@@ -62,7 +63,9 @@ void setup() {
   pinMode(2,OUTPUT);
 
   server.on("/", handle_root);
-  
+  server.on("/led1_on",handle_led1On);
+  server.on("/led1_off",handle_led1Off);
+   
   server.begin();
   Serial.println("HTTP server started");
   delay(100);
@@ -78,8 +81,10 @@ void loop() {
 //      if(newClient.available()>0){
 //        char c =newClient.read();
 //        Serial.print(c);
+//        receAll += c;
 //        if(c == '\n' ){
 //          if(receline.length() == 0){
+//            getCommand();
 //            pageDisplay();
 //            break;
 //          }
@@ -96,11 +101,21 @@ void loop() {
 //    Serial.println("Client disconnected.");
 //  }
 
-   server.handleClient();
-
+  server.handleClient();
+  
 }
 
 // Handle root url (/)
 void handle_root() {
+  server.send(200, "text/html", HTML);
+}
+void handle_led1On(){
+  digitalWrite(2,HIGH);
+  led1State = "ON";
+  server.send(200, "text/html", HTML);
+}
+void handle_led1Off(){
+  digitalWrite(2,LOW);
+  led1State = "OFF";
   server.send(200, "text/html", HTML);
 }
