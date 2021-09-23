@@ -6,7 +6,7 @@ LiquidCrystal lcd(rs, rw, e, d4, d5, d6, d7);
 void setup() {
 //  pinMode(25,OUTPUT);
 //  analogWrite(25,90);
-  ledcSetup(8, 1, 8);  //设置LEDC通道8频率为1，分辨率为10位，即占空比可选0~1023
+  ledcSetup(8, 1, 8);  //设置LEDC通道8频率为1，分辨率为8位，即占空比可选0~255
   ledcAttachPin(25, 8);
   ledcWrite(8, 90);
   lcd.begin(16, 2);
@@ -17,6 +17,6 @@ void setup() {
 }
 
 void loop() {
-//  lcd.setCursor(0, 1);
-//  lcd.print(millis() / 1000);
+//  lcd.setCursor(0, 1);//光标移至第二行第一位
+//  lcd.print(millis() / 1000);//倒计时
 }
