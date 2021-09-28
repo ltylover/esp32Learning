@@ -7,21 +7,19 @@ void interruptEvent()
 {
   digitalWrite(2,HIGH);
 }
-//中断事件内容
+//中断服务函数
 
 void setup() {
   Serial.begin(115200);
 
-
-#if 0 == EXT_TSR_MODE
+  #if 0 == EXT_TSR_MODE
   pinMode(2,OUTPUT);
   pinMode(0,INPUT_PULLUP);
-  attachInterrupt(0,interruptEvent,FALLING);
+  attachInterrupt(0,interruptEvent,FALLING);//(pin,中断服务函数，IO口引起的电平类型)
     //触发中断事件
-#elif 1 == EXT_TSR_MODE
+  #elif 1 == EXT_TSR_MODE
   
-#endif
-
+  #endif
 }
 
 void loop() {
@@ -30,7 +28,5 @@ void loop() {
   #elif 1 == EXT_TSR_MODE
 
   #endif
-
-  digitalWrite(2,HIGH);
 
 }
