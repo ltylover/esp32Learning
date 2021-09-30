@@ -16,13 +16,12 @@ String HTML = "<!DOCTYPE html>\
 <h1>ESP32 Web Server</h1>\
 <p>SERVO</p>\
 <form action = \"#\" method = \"get\">\
+通道<input type = \"radio\" name = \"number0\">  0  <input type = \"radio\" name = \"number1\">  1  <input type = \"radio\" name = \"number2\">  2<br/>\
 角度<input type = \"text\" name = \"angle\"><br/>\
 <input type = \"submit\" name = \"submit\" value = \"提交\">\
 </form>\
 </body>\
 </html>";
-
-String angle = "";
 
 void setup() {
   //串口初始化
@@ -51,6 +50,9 @@ void loop() {
 
 void handle_root() {
   Serial.println(server.uri());
+  Serial.println(server.arg("number0"));
+  Serial.println(server.arg("number1"));
+  Serial.println(server.arg("number2"));
   Serial.println(server.arg("angle"));
   server.send(200, "text/html", HTML);
 }

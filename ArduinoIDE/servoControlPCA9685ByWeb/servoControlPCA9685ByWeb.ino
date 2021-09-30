@@ -8,7 +8,7 @@
 //默认地址 0x40
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 
-//舵机角度
+//舵机角度 min:102 max:510
 #define SERVO_0  102 
 #define SERVO_45  187 
 //#define SERVO_90  280 
