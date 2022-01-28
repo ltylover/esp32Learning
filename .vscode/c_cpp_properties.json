@@ -3,7 +3,9 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "C:/Users/LTY/.platformio/packages/framework-arduinoespressif32/cores/esp32",
+                "C:/Users/LTY/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/freertos"
             ],
             "defines": [
                 "_DEBUG",
