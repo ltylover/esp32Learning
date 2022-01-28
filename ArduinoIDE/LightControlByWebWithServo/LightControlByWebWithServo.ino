@@ -29,9 +29,9 @@ String HTML = "<!DOCTYPE html>\
 <style> html{text-align:center;}</style>\
 <h1>ESP32 Light Control</h1>\
 <h2>Light 1 (left)</h2>\
-<p><a href =\"/Light1_on\"><button>ON</button></a><a href =\"/Light1_off\"><button>OFF</button></a></p>\
+<p><a href =\"/Light1_on\"><button>ON</button></a>   <a href =\"/Light1_off\"><button>OFF</button></a></p>\
 <h2>Light 2 (right)</h2>\
-<p><a href =\"/Light2_on\"><button>ON</button></a><a href =\"/Light1_off\"><button>OFF</button></a></p>\
+<p><a href =\"/Light2_on\"><button>ON</button></a>   <a href =\"/Light2_off\"><button>OFF</button></a></p>\
 </body>\
 </html>";
 
@@ -48,6 +48,7 @@ void setup() {
 
   //舵机初始化
   lightServo1.attach(25);//舵机控制引脚
+  lightServo2.attach(26);//舵机控制引脚
 
   //html处理与函数对应
   server.on("/", handle_root);
@@ -94,12 +95,12 @@ void handle_light1_off(){
   server.send(200, "text/html", HTML);
 }
 void handle_light2_on(){
-//  lightServo1.write(0);
+//  lightServo2.write(0);
   Serial.println("Light 2 ON");
   server.send(200, "text/html", HTML);
 }
 void handle_light2_off(){
-//  lightServo1.write(0);
+//  lightServo2.write(0);
   Serial.println("Light 2 OFF");
   server.send(200, "text/html", HTML);
 }
