@@ -14,9 +14,13 @@ LiquidCrystal lcd(rs, rw, e, d4, d5, d6, d7);
 Servo lightServo1;
 Servo lightServo2;
 
-//定义WIFI名称和密码
-const char* ssid = "LightControl";
-const char* password = "12345678";
+//定义所连接的WIFI名称和密码
+const char* wifi_network_ssid = "ChinaNet-WUSs";
+const char* wifi_network_password = "20001208";
+
+//定义自身的WIFI名称和密码
+const char *soft_ap_ssid = "ESP32-WiFi";
+const char *soft_ap_password = "12345678";
 
 //定义webserver的端口
 WebServer server(80); 
@@ -36,15 +40,20 @@ String HTML = "<!DOCTYPE html>\
 </html>";
 
 void setup() {
-  //网络功能初始化
+  pinMode(2, OUTPUT);
+  
   Serial.begin(115200);
-  Serial.println();
-  Serial.println("Configuring access point...");
-  WiFi.softAP(ssid,password);
-  IPAddress myIP = WiFi.softAPIP();
-  Serial.print("ESP32 AP IP address:  ");
-  Serial.println(myIP);
-  Serial.println();
+  WiFi.mode(WIFI_MODE_APSTA);
+  WiFi.softAP(soft_ap_ssid, soft_ap_password);
+  WiFi.begin(wifi_network_ssid, wifi_network_password);
+  while (WiFi.status()!= WL_CONNECTED) {
+    delay(500);
+    Serial.println("Connect to WiFi...");
+  }
+  Serial.print("AP address: ");
+  Serial.println(WiFi.softAPIP());
+  Serial.print("STA connected IP address: ");
+  Serial.println(WiFi.localIP());
 
   //舵机初始化
   lightServo1.attach(25);//舵机控制引脚
@@ -58,13 +67,13 @@ void setup() {
   server.on("/Light2_off", handle_light2_off);
   
   //lcd1602初始化
-  ledcSetup(8, 1, 8);  //设置LEDC通道8频率为1，分辨率为8位，即占空比可选0~255
-  ledcAttachPin(25, 8);//pin25输出ledc PWM，与led1602的V0连接
+  ledcSetup(8, 1, 10);  //设置LEDC通道8频率为1，分辨率为10位，即占空比可选0~1023
+  ledcAttachPin(27, 8);//pin27输出ledc PWM，与led1602的V0连接
   ledcWrite(8, 90);//占空比为90
   lcd.begin(16, 2);//led1602尺寸
   delay(1000);
   lcd.clear();
-  lcd.println(myIP);
+  lcd.println(WiFi.softAPIP());
 
   //网络webserver启动
   server.begin();
@@ -73,10 +82,7 @@ void setup() {
 }
 
 void loop() {
-  server.handleClient(); 
-  
-//  lcd.setCursor(0, 1);//光标移至第二行第一位
-//  lcd.print(millis() / 1000);//倒计时
+    server.handleClient(); 
 }
 
 //HTML发送函数
@@ -86,11 +92,13 @@ void handle_root() {
 void handle_light1_on(){
 //  lightServo1.write(0);
   Serial.println("Light 1 ON");
+  digitalWrite(2, HIGH);
   server.send(200, "text/html", HTML);
 }
 void handle_light1_off(){
 //  lightServo1.write(0);
   Serial.println("Light 1 OFF");
+  digitalWrite(2, LOW);
   server.send(200, "text/html", HTML);
 }
 void handle_light2_on(){

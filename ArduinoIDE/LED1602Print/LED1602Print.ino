@@ -6,7 +6,7 @@ LiquidCrystal lcd(rs, rw, e, d4, d5, d6, d7);
 void setup() {
 //  pinMode(25,OUTPUT);
 //  analogWrite(25,90);
-  ledcSetup(8, 1, 8);  //设置LEDC通道8频率为1，分辨率为8位，即占空比可选0~255
+  ledcSetup(7, 1, 8);  //设置LEDC通道8频率为1，分辨率为8位，即占空比可选0~255
   ledcAttachPin(25, 8);//pin25输出ledc PWM，与led1602的V0连接
   ledcWrite(8, 90);//占空比为90
   lcd.begin(16, 2);//led1602尺寸
